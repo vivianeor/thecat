@@ -44,7 +44,7 @@ class _GridOneState extends State<GridOne> {
      );
    }
 
-  Widget _createImageTable(BuildContext context, List<BreedsModel> breeds){
+  GridView _createImageTable(BuildContext context, List<BreedsModel> breeds){
     return GridView.builder(
         padding: const EdgeInsets.all(2.0),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

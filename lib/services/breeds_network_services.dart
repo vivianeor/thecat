@@ -15,14 +15,20 @@ class BreedsNetworkService{
   };
 
   Future<List<BreedsModel>> fetchBreeds() async {
-    http.Response response = await http.get('https://api.thecatapi.com/v1/breeds/', headers: headers);;
+    http.Response response ;
 
     if (response.statusCode == 200){
+      response = await http.get('https://api.thecatapi.com/v1/breeds', headers: headers);
       final Map breedsData = jsonDecode(response.body) as Map<String, dynamic>;
       List<Map<String, dynamic>> breeds = breedsData['results'] as List<Map<String, dynamic>>;
       return breeds.map((json) => BreedsModel.fromJson(json)).toList();
+
     } else if(_search == _offset){
       response = await http.get('https://api.thecatapi.com/v1/breeds/$_search?q=?$_offset', headers: headers);
+      final Map breedsData = jsonDecode(response.body) as Map<String, dynamic>;
+      List<Map<String, dynamic>> breeds = breedsData['results'] as List<Map<String, dynamic>>;
+      return breeds.map((json) => BreedsModel.fromJson(json)).toList();
+
     }else
       throw Exception('Erro, ${response.statusCode}');
 

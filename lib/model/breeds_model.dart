@@ -36,3 +36,4 @@ class BreedsModel {
   Map<String, dynamic> toJson() => _$BreedsModelToJson(this);
 
 }
+
