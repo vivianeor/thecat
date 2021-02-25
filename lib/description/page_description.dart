@@ -17,7 +17,7 @@ class _PageDescriptionState extends State<PageDescription> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Descrição da raça:'),
+        title: Text('Detalhes da raça:'),
         backgroundColor: Colors.black,
       ),
         body: Container(

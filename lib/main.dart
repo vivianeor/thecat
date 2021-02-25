@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/flutter/dev/flutter_projects/thecat_app/lib/home/Home.dart';
+import 'package:thecat_app/grids/gridone.dart';
+
+import 'home/Home.dart';
+
 
 void main() => runApp(MaterialApp(
-    home: Home(),
+    home: GridOne(),
   ));
