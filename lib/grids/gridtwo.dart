@@ -17,56 +17,69 @@ class _GridTwoState extends State<GridTwo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: TextField(
-                decoration: InputDecoration(
-                    labelText: "Pesquise Aqui!",
-                    labelStyle: TextStyle(color: Colors.black),
-                    border: OutlineInputBorder()
-                ),
-                style: TextStyle(color: Colors.white, fontSize: 18.0),
-                textAlign: TextAlign.center,
-                // onSubmitted: (text){
-                //   setState(() {
-                //     _search = text;
-                //     _offset = 0;
-                //   });
-                // },
-              ),
-             ),
-            Expanded(
-                child: FutureBuilder<List<BreedsModel>>(
-                  future: breedsService.fetchBreeds(),
-                  builder: (context, snapshot) {
-                    switch (snapshot.connectionState) {
-                      case ConnectionState.waiting:
-                      case ConnectionState.none:
-                        return Container(
-                            width: 200.0,
-                            height: 200.0,
-                            alignment: Alignment.center,
-                            child: const CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(
-                                  Colors.black),
-                              strokeWidth: 5.0,
-                            )
-                        );
-                      default:
-                        if (snapshot.hasError)
-                          return Container();
-                        else
-                          return _createImageTable(context, snapshot.data);
-                }
-              },
+      body: Container(
+        color: Colors.blue,
+        child: Column(
+          children: [
+            Container(
+              color: Colors.red,
+              child: const Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: TextField(
+                    decoration: InputDecoration(
+                        labelText: "Pesquise Aqui!",
+                        labelStyle: TextStyle(color: Colors.black),
+                        border: OutlineInputBorder()
+                    ),
+                    style: TextStyle(color: Colors.white, fontSize: 18.0),
+                    textAlign: TextAlign.center,
+                    // onSubmitted: (text){
+                    //   setState(() {
+                    //     _search = text;
+                    //     _offset = 0;
+                    //   });
+                    // },
+                  ),
+                 ),
             ),
-         )
-       ],
-      ),
-    );
-  }
+               Column(
+                  children: [
+                    Container(
+                      color: Colors.green,
+                      width: MediaQuery.of(context).size.width -40,
+                      child: FutureBuilder<List<BreedsModel>>(
+                        future: breedsService.getBreeds(),
+                        builder: (context, snapshot) {
+                          switch (snapshot.connectionState) {
+                            case ConnectionState.waiting:
+                            case ConnectionState.none:
+                              return Container(
+                                  width: 200.0,
+                                  height: 200.0,
+                                  alignment: Alignment.center,
+                                  child: const CircularProgressIndicator(
+                                    valueColor: AlwaysStoppedAnimation<Color>(
+                                        Colors.black),
+                                    strokeWidth: 5.0,
+                                  )
+                              );
+                            default:
+                              if (snapshot.hasError)
+                                return Container();
+                              else
+                                return _createImageTable(context, snapshot.data);
+                            }
+                        },
+                      ),
+                     ),
+                   ],
+                  ),
+
+               ],
+              ),
+            ),
+           );
+          }
 
   Widget _createImageTable(BuildContext context, List<BreedsModel> breeds) {
     // return Container();

@@ -14,39 +14,43 @@ class _GridOneState extends State<GridOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-        children: [
-          Expanded(
-              child:
-              SizedBox(
-                height: 300.0,
-                child: FutureBuilder<List<BreedsModel>>(
-                  future: breedsService.fetchBreeds(),
-                  builder: (context, snapshot){
-                    switch(snapshot.connectionState){
-                      case ConnectionState.waiting:
-                      case ConnectionState.none:
-                        return Container(
-                            width: 200.0,
-                            height: 200.0,
-                            alignment: Alignment.center,
-                            child: const CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
-                              strokeWidth: 5.0,
-                            )
-                        );
-                      default:
-                        if(snapshot.hasError) return Container();
-                        else return _createImageTable(context, snapshot.data);
+        body: Container(
+            height: MediaQuery.of(context).size.height,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.green,
+              child: Column(
+                children: [
+                  FutureBuilder<List<BreedsModel>>(
+                    future: breedsService.getBreeds(),
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.waiting:
+                        case ConnectionState.none:
+                          return Container(
+                              width: 200.0,
+                              height: 200.0,
+                              alignment: Alignment.center,
+                              child: const CircularProgressIndicator(
+                                valueColor: AlwaysStoppedAnimation<Color>(
+                                    Colors.black),
+                                strokeWidth: 5.0,
+                              )
+                          );
+                        default:
+                          if (snapshot.hasError)
+                            return Container(
+                              child: Text('oiiiii'),
+                            );
+                          else
+                            return _createImageTable(context, snapshot.data);
+                      }
                     }
-                   },
                   ),
-               ),
-             ),
-           ],
-         ),
-       );
-     }
+                ],
+              ),
+            ),
+          );
+         }
 
   Widget _createImageTable(BuildContext context, List<BreedsModel> breeds){
     return GridView.builder(
@@ -65,7 +69,8 @@ class _GridOneState extends State<GridOne> {
                   height: 300.0,
                   fit: BoxFit.cover,),
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute<void>(builder: (context) => PageDescription(breeds[index])));
+                    Navigator.push(context,
+                        MaterialPageRoute<void>(builder: (context) => PageDescription(breeds[index])));
                   },
               );
             }

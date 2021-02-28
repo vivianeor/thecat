@@ -14,7 +14,7 @@ class BreedsNetworkService{
     'x-api-key' : '98c1a2e3-b032-4205-9261-46233cb892f7',
   };
 
-  Future<List<BreedsModel>> fetchBreeds() async {
+  Future<List<BreedsModel>> getBreeds() async {
     http.Response response ;
 
     if (response.statusCode == 200){

@@ -45,26 +45,15 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ],
         ),
       ),
-      body:
-         Column(
-           children: [
-             Expanded(
-               child:
-               SizedBox(
-                   height: 300.0,
-                     child: TabBarView(
-                        controller: controller,
-                       children: [
-                         // Icon(Icons.home),
-                         // Icon(Icons.access_time),
-                         gridone.GridOne(),
-                         gridtwo.GridTwo(),
-                       ]
-                   ),
-                ),
-              ),
-            ],
-           ),
-        );
-       }
-     }
+      body: TabBarView(
+            controller: controller,
+            children: [
+              // Icon(Icons.home),
+              // Icon(Icons.access_time),
+              gridone.GridOne(),
+              gridtwo.GridTwo(),
+            ]
+          ),
+     );
+   }
+}
