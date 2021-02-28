@@ -14,7 +14,7 @@ class _GridOneState extends State<GridOne> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+      body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             color: Colors.green,
@@ -27,30 +27,30 @@ class _GridOneState extends State<GridOne> {
                         case ConnectionState.waiting:
                         case ConnectionState.none:
                           return Container(
-                              width: 200.0,
-                              height: 200.0,
-                              alignment: Alignment.center,
-                              child: const CircularProgressIndicator(
-                                valueColor: AlwaysStoppedAnimation<Color>(
-                                    Colors.black),
-                                strokeWidth: 5.0,
-                              )
-                          );
-                        default:
-                          if (snapshot.hasError)
+                            width: 200.0,
+                            height: 200.0,
+                            alignment: Alignment.center,
+                            child: const CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation<Color>(
+                                  Colors.black),
+                                  strokeWidth: 5.0,
+                                  )
+                                 );
+                           default:
+                            if (snapshot.hasError)
                             return Container(
                               child: Text('oiiiii'),
                             );
-                          else
-                            return _createImageTable(context, snapshot.data);
-                      }
-                    }
+                            else
+                              return _createImageTable(context, snapshot.data);
+                            }
+                          }
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
-            ),
-          );
-         }
+                );
+               }
 
   Widget _createImageTable(BuildContext context, List<BreedsModel> breeds){
     return GridView.builder(
