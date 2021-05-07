@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'home/Home.dart';
+import 'package:thecat_app/ui/home_page.dart';
 
 
 void main() {
-    runApp(App());
+  runApp(App());
 }
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'The Cats Demo',
-        // theme: ThemeData(
-        //     primarySwatch: Colors.white,
-        // ),
-        home: Home(),
+      debugShowCheckedModeBanner: false,
+      title: 'The Cats',
+      home: HomePage(),
     );
   }
 }
