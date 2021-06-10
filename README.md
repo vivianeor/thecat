@@ -4,7 +4,7 @@ O objetivo desse app é exibir raças de gatos através de uma gridview e ao cli
 
 Também é possível pesquisar por raça.
 
-Feito em Flutter e Dart. 
+Bloc como gerência de estado.
 
 Consumo da api https://thecatapi.com/.
 
